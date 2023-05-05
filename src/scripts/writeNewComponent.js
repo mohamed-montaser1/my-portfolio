@@ -1,12 +1,28 @@
 import fs from "fs";
+import path, { dirname } from "path";
 import { argv } from "process";
+import { fileURLToPath } from "url";
+
 const component = argv[2];
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 async function createComponent(componentName) {
-  let tsDir = `E:\\projects\\my-modern-portfolio\\src\\components\\${componentName}`;
-  let scssDir = `E:\\projects\\my-modern-portfolio\\src\\scss\\${componentName}`;
+  const tsDir = path.join(
+    __dirname,
+    "../",
+    "components",
+    `${componentName.slice(0, 1).toUpperCase()}${componentName.slice(1)}`
+  );
+  const tsPage = path.join(
+    __dirname,
+    "../",
+    "pages",
+    `${componentName.slice(0, 1).toUpperCase()}${componentName.slice(1)}`
+  );
+  const scssDir = path.join(__dirname, "../", "scss", `${componentName}`);
+
   let txt = `
-function ${componentName}() {
+function ${componentName.slice(0, 1).toUpperCase()}${componentName.slice(1)}() {
   return (
     <>
       <h1>${componentName}</h1>
@@ -14,10 +30,12 @@ function ${componentName}() {
   );
 }
 
-export default ${componentName};
+export default ${componentName.slice(0, 1).toUpperCase()}${componentName.slice(
+    1
+  )};
   `;
-  if (fs.existsSync(tsDir)) {
-    console.error("this file is already exists");
+  if (fs.existsSync(tsDir) || fs.existsSync(tsPage)) {
+    console.error("this component is already exists");
     return;
   }
   fs.mkdir(tsDir, (err) => {
