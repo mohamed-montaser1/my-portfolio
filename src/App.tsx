@@ -1,7 +1,11 @@
+import { Provider } from "./Context/sendMail";
+import Mainpage from "./pages/Mainpage/Mainpage";
 function App() {
   return (
     <>
-      <h1>hello world</h1>
+      <Provider>
+        <Mainpage />
+      </Provider>
     </>
   );
 }

@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./global/variables";
+@import "./global/rests";
+@import "./navbar/navbar.scss";
+@import "./landing/landing.scss";
+@import "./button/button.scss";
+@import "./myImage/myImage.scss"; 
+

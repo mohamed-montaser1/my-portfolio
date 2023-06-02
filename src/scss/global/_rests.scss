@@ -1,0 +1,28 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+html,
+body {
+  overflow-x: hidden !important;
+}
+
+body {
+  background-color: $body-bg;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+img {
+  user-select: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}

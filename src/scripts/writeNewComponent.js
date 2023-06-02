@@ -4,9 +4,26 @@ import { argv } from "process";
 import { fileURLToPath } from "url";
 
 const component = argv[2];
+const componentPage = argv[3];
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 async function createComponent(componentName) {
+  let pathToPage = path.join(
+    __dirname,
+    "../",
+    "pages",
+    `${componentPage.slice(0, 1).toUpperCase()}${componentPage.slice(1)}`
+  );
+  if (!fs.existsSync(pathToPage)) {
+    console.error("page not found");
+    return;
+  }
+  let page = path.join(
+    pathToPage,
+    `${componentPage.slice(0, 1).toUpperCase()}${componentPage.slice(1)}.tsx`
+  );
+  // fs.appendFile(page, "", )
+
   const tsDir = path.join(
     __dirname,
     "../",
@@ -21,7 +38,33 @@ async function createComponent(componentName) {
   );
   const scssDir = path.join(__dirname, "../", "scss", `${componentName}`);
 
+  fs.readFile(page, "utf-8", (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    let newData = `
+import ${componentName.slice(0, 1).toUpperCase()}${componentName.slice(
+      1
+    )} from "../../components/${componentName
+      .slice(0, 1)
+      .toUpperCase()}${componentName.slice(1)}/${componentName
+      .slice(0, 1)
+      .toUpperCase()}${componentName.slice(1)}.tsx"
+${data}
+    `;
+    fs.writeFile(page, newData, (err) => {
+      if (err) {
+        console.log(err);
+        return;
+      } else {
+        console.log("component imported successfully! ✅");
+      }
+    });
+  });
+
   let txt = `
+import "../../scss/${componentName}/${componentName}.scss"
 function ${componentName.slice(0, 1).toUpperCase()}${componentName.slice(1)}() {
   return (
     <>
@@ -69,7 +112,7 @@ export default ${componentName.slice(0, 1).toUpperCase()}${componentName.slice(
             console.error(err);
           } else {
             console.log(`created ${componentName}.scss successfully ✅`);
-            let txt = `@use "./${componentName}/${componentName}.scss"; \n`;
+            let txt = `@import "./${componentName}/${componentName}.scss"; \n`;
             fs.appendFile(
               "E:\\projects\\my-modern-portfolio\\src\\scss\\index.scss",
               txt,
