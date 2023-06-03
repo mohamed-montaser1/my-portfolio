@@ -41,24 +41,24 @@ function Form() {
   return (
     <>
       <form className="mt-10 mx-auto w-fit">
-        <div className="input-container flex gap-5 mb-5 w-[300px] max-[792px]:flex-col">
+        <div className="input-container flex gap-5 mb-5 w-[800px] max-[792px]:w-[500px] max-[1040px]:w-[600px] max-[638px]:w-[400px] max-[430px]:w-[300px] max-[430px]:flex-col">
           <input
             type={"text"}
             placeholder={"Your Name"}
-            className="bg-transparent border border-solid border-slate-300 px-4 py-2 w-[300px] outline-none text-slate-200"
+            className="bg-transparent border border-solid border-slate-300 px-4 py-2 w-[400px] outline-none text-slate-200 max-[638px]:w-[200px] max-[430px]:w-[300px]"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
             type={"email"}
             placeholder={"Your Email"}
-            className="bg-transparent border border-solid border-slate-300 px-4 py-2 w-[300px] outline-none text-slate-200"
+            className="bg-transparent border border-solid border-slate-300 px-4 py-2 w-[400px] outline-none text-slate-200 max-[430px]:w-[300px] max-[638px]:w-[200px]"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <textarea
-          className="bg-transparent border border-solid border-slate-300 px-4 py-2 min-w-[100%] max-w-[620px] mb-5 min-h-[200px] outline-none text-slate-200 resize-y"
+          className="bg-transparent border border-solid border-slate-300 px-4 py-2 w-[800px] mb-5 min-h-[200px] outline-none text-slate-200 resize-y max-[792px]:w-[500px] max-[1040px]:w-[600px] max-[638px]:w-[420px] max-[430px]:w-[300px]"
           placeholder="Your Message"
           value={message}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
