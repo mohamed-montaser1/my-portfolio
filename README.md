@@ -23,8 +23,3 @@
   <li><code>npm install</code> in root folder</li>
   <li><code>npm run dev</code> to start</li>
 </ol>
-
-<b>PROJECT PORT 3000</b>
-
-<!-- connect -->
-<!-- support -->
